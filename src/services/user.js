@@ -3,13 +3,16 @@ const auth = require('./auth');
 
 const userService = {
   index: async () => {
-    const users = await User.findAll();
-    // console.log("All users:", JSON.stringify(users, null, 2));
-    const usersWithoutPassword = users.map((user) => {
-      const { password, ...rest } = user.dataValues;
-      return rest;
+    const users = await User.findAll({
+      attributes: { exclude: ['password'] },
     });
-    return usersWithoutPassword;
+    return users;
+    // console.log("All users:", JSON.stringify(users, null, 2));
+    // const usersWithoutPassword = users.map((user) => {
+    //   const { password, ...rest } = user.dataValues;
+    //   return rest;
+    // });
+    // return usersWithoutPassword;
   },
   login: async (body) => {
     const user = await User.findOne({

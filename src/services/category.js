@@ -1,7 +1,13 @@
 const { Category } = require('../database/models');
 
 const categoryService = {
-  index: async () => { },
+  index: async () => {
+    const categories = await Category.findAll({
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    return categories;
+  },
   show: async () => { },
   store: async ({ name }) => {
     const category = await Category.create({ name });
