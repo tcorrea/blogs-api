@@ -2,7 +2,7 @@ const { Category } = require('../database/models');
 
 const categoryService = {
   index: async () => { },
-  show: async (_id) => { },
+  show: async () => { },
   store: async ({ name }) => {
     const category = await Category.create({ name });
     return category;
