@@ -1,11 +1,14 @@
-// impont model
+const { Category } = require('../database/models');
 
-const category = {
+const categoryService = {
   index: async () => { },
   show: async (_id) => { },
-  store: async () => { },
+  store: async ({ name }) => {
+    const category = await Category.create({ name });
+    return category;
+  },
   update: async () => { },
   destroy: async () => { },
 };
 
-module.exports = category;
+module.exports = categoryService;
