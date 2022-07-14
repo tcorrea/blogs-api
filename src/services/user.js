@@ -2,7 +2,15 @@ const { User } = require('../database/models');
 const auth = require('./auth');
 
 const userService = {
-  index: async () => { },
+  index: async () => {
+    const users = await User.findAll();
+    // console.log("All users:", JSON.stringify(users, null, 2));
+    const usersWithoutPassword = users.map((user) => {
+      const { password, ...rest } = user.dataValues;
+      return rest;
+    });
+    return usersWithoutPassword;
+  },
   login: async (body) => {
     const user = await User.findOne({
       attributes: { exclude: ['image', 'id', 'createdAt', 'updatedAt'] },

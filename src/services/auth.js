@@ -13,7 +13,7 @@ const auth = {
       const payload = jwt.verify(token, process.env.JWT_SECRET);
       return payload;
     } catch (e) {
-      const error = new Error('/TODO/');
+      const error = new Error('Expired or invalid token');
       error.name = 'UnauthorizedError';
       throw error;
     }

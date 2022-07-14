@@ -8,8 +8,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/login', loginRouter);
 app.use('/user', userRouter);
+app.use('/login', loginRouter);
 
 app.use((err, _req, res, _next) => {
   const { name, message } = err;
