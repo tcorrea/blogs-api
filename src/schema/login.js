@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const userSchema = {
+const loginSchema = {
   login: (body) => {
     const schema = Joi.object({
       email: Joi.string().email().required(),
@@ -16,4 +16,4 @@ const userSchema = {
   },
 };
 
-module.exports = userSchema;
+module.exports = loginSchema;

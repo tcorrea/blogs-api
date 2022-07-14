@@ -2,12 +2,14 @@ const express = require('express');
 require('express-async-errors');
 // const userRouter = require('./routers/user');
 const loginRouter = require('./routers/login');
+const userRouter = require('./routers/user');
 
 const app = express();
 
 app.use(express.json());
 
 app.use('/login', loginRouter);
+app.use('/user', userRouter);
 
 app.use((err, _req, res, _next) => {
   const { name, message } = err;
@@ -18,7 +20,7 @@ app.use((err, _req, res, _next) => {
     case 'NotFoundError':
       res.status(404).json({ message });
       break;
-    case 'ConflictError':
+    case 'Conflict':
       res.status(409).json({ message });
       break;
     case 'UnauthorizedError':

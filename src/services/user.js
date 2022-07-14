@@ -20,8 +20,30 @@ const userService = {
     error.name = 'BadRequest';
     throw error;
   },
+
   show: async (_id) => { },
-  store: async () => { },
+
+  store: async (body) => {
+    const { displayName, email, password, image } = body;
+    const userFound = await User.findOne({
+      attributes: { exclude: ['image', 'id', 'createdAt', 'updatedAt'] },
+      where: { email },
+    });
+    if (userFound) {
+      const error = new Error('User already registered');
+      error.name = 'Conflict';
+      throw error;
+    }
+
+    const user = await User.create({ displayName, email, password, image });
+    if (user) {
+      const token = auth.createToken({ displayName, email });
+      return token;
+    }
+    // TODO
+    return false;
+  },
+
   update: async () => { },
   destroy: async () => { },
 };

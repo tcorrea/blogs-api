@@ -11,6 +11,14 @@ const createUser = (sequelize, DataTypes) => {
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     image: DataTypes.STRING,
+    // createdAt: {
+    //   field: 'created_at',
+    //   type: DataTypes.DATE,
+    // },
+    // updatedAt: {
+    //   field: 'updated_at',
+    //   type: DataTypes.DATE,
+    // },
   };
 
   const options = { tableName: 'Users' };

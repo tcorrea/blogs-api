@@ -1,8 +1,8 @@
 const schema = require('../schema/user');
 
 const userMiddleware = {
-  loginValidation: (req, _res, next) => {
-    schema.login(req.body);
+  fieldValidation: (req, _res, next) => {
+    schema.store(req.body);
     next();
   },
 };
