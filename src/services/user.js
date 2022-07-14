@@ -29,7 +29,19 @@ const userService = {
     throw error;
   },
 
-  show: async (_id) => { },
+  show: async (id) => {
+    const user = await User.findOne({
+      attributes: { exclude: ['password'] },
+      where: { id },
+    });
+    console.log(user);
+
+    if (user) return user;
+
+    const error = new Error('User does not exist');
+    error.name = 'NotFoundError';
+    throw error;
+  },
 
   store: async (body) => {
     const { displayName, email, password, image } = body;

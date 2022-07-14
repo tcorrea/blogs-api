@@ -1,6 +1,6 @@
 const service = require('../services/user');
 
-const user = {
+const userController = {
   index: async (_req, res) => {
     const users = await service.index();
     res.status(200).json(users);
@@ -13,9 +13,13 @@ const user = {
     const token = await service.store(req.body);
     res.status(201).json({ token });
   },
-  // show: async (_req, _res) => { },
+  show: async (req, res) => {
+    const { id } = req.params;
+    const user = await service.show(id);
+    res.status(200).json(user);
+  },
   // update: async (_req, _res) => { },
   // destroy: async (_req, _res) => { },
 };
 
-module.exports = user;
+module.exports = userController;
