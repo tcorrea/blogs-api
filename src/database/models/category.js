@@ -19,10 +19,14 @@ const createCategory = (sequelize, DataTypes) => {
 
   const Category = sequelize.define(MODEL_NAME, attributes, options);
 
-  // User.associate = (db) => {
-  //   User.hasMany(db.Pet, { as: 'pets', foreignKey: 'userId' });
-  // }
-
+  // Category.associate = (model) => {
+  //   Category.belongsToMany(model.BlogPost, {
+  //     through: 'PostCategories',
+  //     // as: 'blogPosts',
+  //     as: 'BlogPost',
+  //     foreignKey: 'categoryId',
+  //   });
+  // };
   return Category;
 };
 

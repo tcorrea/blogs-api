@@ -16,10 +16,24 @@ const createBlogPost = (sequelize, DataTypes) => {
   const options = { tableName: 'BlogPosts' };
 
   const BlogPost = sequelize.define(MODEL_NAME, attributes, options);
-  BlogPost.associate = (db) => {
-    BlogPost.belongsTo(db.User, { as: 'user', foreignKey: 'userId' });
+
+  BlogPost.associate = (models) => {
+    BlogPost.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
+    // BlogPost.belongsToMany(models.Category, {
+    //   through: 'PostCategories',
+    //   // as: 'categories',
+    //   as: 'Category',
+    //   foreignKey: 'postId',
+    // });
   };
 
+  // BlogPost.associate = (models) => {
+  //   BlogPost.belongsToMany(models.Category, {
+  //     through: 'PostCategories',
+  //     as: 'categories',
+  //     foreignKey: 'postId',
+  //   });
+  // };
   return BlogPost;
 };
 
