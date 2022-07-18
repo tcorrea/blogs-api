@@ -19,14 +19,6 @@ const createCategory = (sequelize, DataTypes) => {
 
   const Category = sequelize.define(MODEL_NAME, attributes, options);
 
-  // Category.associate = (model) => {
-  //   Category.belongsToMany(model.BlogPost, {
-  //     through: 'PostCategories',
-  //     // as: 'blogPosts',
-  //     as: 'BlogPost',
-  //     foreignKey: 'categoryId',
-  //   });
-  // };
   return Category;
 };
 

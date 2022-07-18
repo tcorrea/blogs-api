@@ -9,7 +9,8 @@ const authMiddleware = {
       tokenNotFoundError.name = 'UnauthorizedError';
       throw tokenNotFoundError;
     }
-    validateToken(authorization);
+    const { id } = validateToken(authorization);
+    req.userId = id;
     next();
   },
 };

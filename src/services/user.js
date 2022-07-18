@@ -16,7 +16,7 @@ const userService = {
   },
   login: async (body) => {
     const user = await User.findOne({
-      attributes: { exclude: ['image', 'id', 'createdAt', 'updatedAt'] },
+      attributes: { exclude: ['image', 'createdAt', 'updatedAt'] },
       where: { email: body.email },
     });
 
@@ -37,7 +37,6 @@ const userService = {
       attributes: { exclude: ['password'] },
       where: { id },
     });
-    console.log(user);
 
     if (user) return user;
 
@@ -59,8 +58,9 @@ const userService = {
     }
 
     const user = await User.create({ displayName, email, password, image });
+    console.log('USERRR', user);
     if (user) {
-      const token = auth.createToken({ displayName, email });
+      const token = auth.createToken({ id: user.id, displayName, email });
       return token;
     }
     // TODO

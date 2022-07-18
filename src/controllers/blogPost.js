@@ -1,10 +1,25 @@
-// impont service
+const service = require('../services/blogPost');
 
-const blogPost = {
-  index: async (_req, _res) => { },
-  show: async (_req, _res) => { },
-  update: async (_req, _res) => { },
-  destroy: async (_req, _res) => { },
+const blogpostController = {
+  // index: async (_req, res) => {
+  //   const posts = await service.index();
+  //   res.status(200).json(posts);
+  // },
+  // login: async (req, res) => {
+  //   const token = await service.login(req.body);
+  //   res.status(200).json({ token });
+  // },
+  store: async (req, res) => {
+    const post = await service.store(req.body, req.userId);
+    res.status(201).json(post);
+  },
+  // show: async (req, res) => {
+  //   const { id } = req.params;
+  //   const user = await service.show(id);
+  //   res.status(200).json(user);
+  // },
+  // update: async (_req, _res) => { },
+  // destroy: async (_req, _res) => { },
 };
 
-module.exports = blogPost;
+module.exports = blogpostController;

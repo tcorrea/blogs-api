@@ -4,8 +4,13 @@ const jwt = require('jsonwebtoken');
 const auth = {
 
   createToken: (payload) => {
-    const token = jwt.sign({ payload }, process.env.JWT_SECRET);
+    const token = jwt.sign(payload, process.env.JWT_SECRET);
     return token;
+  },
+
+  decodeToken: (token) => {
+    const decodedToken = jwt.decode(token);
+    return decodedToken;
   },
 
   validateToken: (token) => {
