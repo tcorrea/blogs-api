@@ -16,6 +16,7 @@ const blogPost = {
         published: Date.now(),
         updated: Date.now(),
       });
+
       const dataToStore = categoryIds.map((categoryId) => ({ postId: post.id, categoryId }));
       await postCategoryService.storeByArray(dataToStore);
       return post;

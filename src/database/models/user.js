@@ -5,7 +5,7 @@ const createUser = (sequelize, DataTypes) => {
   const MODEL_NAME = 'User';
 
   const attributes = {
-    // id: { type: DataTypes.INTEGER, primaryKey: true },
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     displayName: DataTypes.STRING,

@@ -5,7 +5,7 @@ const createBlogPost = (sequelize, DataTypes) => {
   const MODEL_NAME = 'BlogPost';
 
   const attributes = {
-    // id: { type: DataTypes.INTEGER, primaryKey: true },
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     userId: DataTypes.INTEGER,
