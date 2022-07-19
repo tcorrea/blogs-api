@@ -21,7 +21,24 @@ const blogPost = {
 
     return posts;
   },
-  show: async (_id) => { },
+  show: async (id) => {
+    const post = await models.BlogPost.findOne({
+      where: { id },
+      include: [{
+        model: models.User,
+        as: 'user',
+        attributes: { exclude: ['createdAt', 'updatedAt', 'password'] },
+      },
+      {
+        model: models.Category,
+        as: 'categories',
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        through: { attributes: [] },
+      }],
+    });
+
+    return post;
+  },
   store: async ({ title, content, categoryIds }, userId) => {
     const categoriesFound = await categoryService.showByArray(categoryIds);
     if (categoriesFound.length === categoryIds.length) {

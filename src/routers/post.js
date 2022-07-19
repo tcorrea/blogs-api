@@ -7,6 +7,6 @@ const router = Router();
 
 router.get('/', auth.required, controller.index);
 router.post('/', fieldValidation, auth.required, controller.store);
-// router.get('/:id', auth.required, user.show);
+router.get('/:id', auth.required, controller.show);
 
 module.exports = router;
