@@ -1,14 +1,10 @@
 const service = require('../services/blogPost');
 
 const blogpostController = {
-  // index: async (_req, res) => {
-  //   const posts = await service.index();
-  //   res.status(200).json(posts);
-  // },
-  // login: async (req, res) => {
-  //   const token = await service.login(req.body);
-  //   res.status(200).json({ token });
-  // },
+  index: async (_req, res) => {
+    const posts = await service.index();
+    res.status(200).json(posts);
+  },
   store: async (req, res) => {
     const post = await service.store(req.body, req.userId);
     res.status(201).json(post);

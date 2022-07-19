@@ -1,14 +1,31 @@
-const { BlogPost } = require('../database/models');
+// const { BlogPost, Category, User } = require('../database/models');
+const models = require('../database/models');
 const categoryService = require('./category');
 const postCategoryService = require('./postCategory');
 
 const blogPost = {
-  index: async () => { },
+  index: async () => {
+    const posts = await models.BlogPost.findAll({
+      include: [{
+        model: models.User,
+        as: 'user',
+        attributes: { exclude: ['createdAt', 'updatedAt', 'password'] },
+      },
+      {
+        model: models.Category,
+        as: 'categories',
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        through: { attributes: [] },
+      }],
+    });
+
+    return posts;
+  },
   show: async (_id) => { },
   store: async ({ title, content, categoryIds }, userId) => {
     const categoriesFound = await categoryService.showByArray(categoryIds);
     if (categoriesFound.length === categoryIds.length) {
-      const post = await BlogPost.create({
+      const post = await models.BlogPost.create({
         title,
         content,
         categoryIds,
