@@ -74,6 +74,33 @@ const update = async ({ title, content, postId, userId }) => {
   return post;
 };
 
+const destroy = async ({ id }, userId) => {
+  const post = await show(id);
+
+  if (!post) {
+    const error = new Error('Post does not exist');
+    error.name = 'NotFoundError';
+    throw error;
+  }
+
+  if (post.userId !== userId) {
+    const error = new Error('Unauthorized user');
+    error.name = 'UnauthorizedError';
+    throw error;
+  }
+  //   Model.destroy({
+  //     where: {
+  //         // criteria
+  //     }
+  // })
+
+  // models.BlogPost.destroy({
+  //   where: { id }
+  // });
+
+  await post.destroy();
+};
+
 // const blogPost = {
 //   index: async () => {
 //     const posts = await models.BlogPost.findAll({
@@ -148,4 +175,4 @@ const update = async ({ title, content, postId, userId }) => {
 // };
 
 // module.exports = blogPost;
-module.exports = { index, show, store, update };
+module.exports = { index, show, store, update, destroy };

@@ -31,7 +31,10 @@ const blogpostController = {
     const updatedPost = await service.update(payload);
     res.status(200).json(updatedPost);
   },
-  // destroy: async (_req, _res) => { },
+  destroy: async (req, res) => {
+    await service.destroy(req.params, req.userId);
+    res.status(204).send();
+  },
 };
 
 module.exports = blogpostController;
