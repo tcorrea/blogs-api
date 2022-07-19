@@ -1,8 +1,12 @@
 const schema = require('../schema/post');
 
 const postMiddleware = {
-  fieldValidation: (req, _res, next) => {
+  store: (req, _res, next) => {
     schema.store(req.body);
+    next();
+  },
+  update: (req, _res, next) => {
+    schema.update(req.body);
     next();
   },
 };

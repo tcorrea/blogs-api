@@ -19,7 +19,18 @@ const blogpostController = {
     }
     res.status(200).json(post);
   },
-  // update: async (_req, _res) => { },
+  update: async (req, res) => {
+    const { title, content } = req.body;
+    const { id } = req.params;
+    const payload = {
+      title,
+      content,
+      postId: id,
+      userId: req.userId,
+    };
+    const updatedPost = await service.update(payload);
+    res.status(200).json(updatedPost);
+  },
   // destroy: async (_req, _res) => { },
 };
 
