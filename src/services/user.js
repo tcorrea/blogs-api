@@ -52,7 +52,6 @@ const userService = {
     }
 
     const user = await User.create({ displayName, email, password, image });
-    console.log('USERRR', user);
     if (user) {
       const token = auth.createToken({ id: user.id, displayName, email });
       return token;
@@ -62,7 +61,9 @@ const userService = {
   },
 
   update: async () => { },
-  destroy: async () => { },
+  destroy: async (userId) => {
+    await User.destroy({ where: { id: userId } });
+  },
 };
 
 module.exports = userService;

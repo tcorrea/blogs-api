@@ -19,7 +19,10 @@ const userController = {
     res.status(200).json(user);
   },
   // update: async (_req, _res) => { },
-  // destroy: async (_req, _res) => { },
+  destroy: async (req, res) => {
+    await service.destroy(req.userId);
+    res.status(204).send();
+  },
 };
 
 module.exports = userController;
