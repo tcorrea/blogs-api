@@ -19,6 +19,14 @@ const blogpostController = {
     }
     res.status(200).json(post);
   },
+  showByQuery: async (req, res) => {
+    const { q } = req.query;
+    const posts = await service.showByQuery(q);
+    if (!posts) {
+      res.status(200).json([]);
+    }
+    res.status(200).json(posts);
+  },
   update: async (req, res) => {
     const { title, content } = req.body;
     const { id } = req.params;
