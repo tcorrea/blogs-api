@@ -23,8 +23,6 @@ Estrutura do projeto e descrição dos arquivos que foram desenvolvidos por mim 
   Legenda:
   🔸Arquivos desenvolvidos pela Trybe (não foram alterados).
   🔹Arquivos desenvolvidos por mim.
-🔹
-🔸
   .
   ├──🔸docker-compose.yml
   ├──🔸Dockerfile
